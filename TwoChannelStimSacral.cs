@@ -35,6 +35,7 @@ namespace SignalGenerator
         int Wave1Amplitude = 1000;
         int Wave2Frequency = 1020;
         int Wave2Amplitude = 1000;
+        int WavePhase = 0;
         int T = 0;
         int statePort = 0;
 
@@ -275,10 +276,12 @@ namespace SignalGenerator
                         System.Threading.Thread.Sleep(50);
                         send_string("Wave2Amplitude:" + Wave2Amplitude.ToString());
                         System.Threading.Thread.Sleep(50);
+                        send_string("WavePhase:" + WavePhase.ToString());
+                        System.Threading.Thread.Sleep(50);
                         send_string("RunStop:" + "1");
                         System.Threading.Thread.Sleep(50);
                         LoggingTimer.Enabled = true;
-                        System.Threading.Thread.Sleep(50); 
+                        System.Threading.Thread.Sleep(50);
 
                     }
                     else
@@ -335,8 +338,7 @@ namespace SignalGenerator
         private void LoggingTimer_Tick(object sender, EventArgs e)
         {
                 ExpTimer++;
-                label1.Text =ExpTimer.ToString();
-              
+                label1.Text =ExpTimer.ToString();              
         }
 
 
@@ -465,6 +467,24 @@ namespace SignalGenerator
             statePort = 0;
             ExpTimer = 0;
 
+        }
+
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButtonPhase0_Click(object sender, EventArgs e)
+        {
+            WavePhase = 0;
+            if (RunStop && RealTimeChange) send_string("WavePhase:" + WavePhase.ToString());
+        }
+
+        private void radioButtonPhase180_Click(object sender, EventArgs e)
+        {
+            WavePhase = 180;
+            if (RunStop && RealTimeChange) send_string("WavePhase:" + WavePhase.ToString());
         }
     }
 }
