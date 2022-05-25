@@ -35,7 +35,7 @@ namespace SignalGenerator
         int Wave1Amplitude = 1000;
         int Wave2Frequency = 1020;
         int Wave2Amplitude = 1000;
-        int WavePhase = 0;
+        int WavePhase =360;
         int T = 0;
         int statePort = 0;
 
@@ -382,13 +382,13 @@ namespace SignalGenerator
 
         private void radioButton_W1A1_5_Click(object sender, EventArgs e)
         {
-            Wave1Amplitude = 2000;
+            Wave1Amplitude = 1500;
             if (RunStop && RealTimeChange) send_string("Wave1Amplitude:" + Wave1Amplitude.ToString());
         }
 
         private void radioButton_W1A2_Click(object sender, EventArgs e)
         {
-            Wave1Amplitude = 5000;
+            Wave1Amplitude = 2000;
             if (RunStop && RealTimeChange) send_string("Wave1Amplitude:" + Wave1Amplitude.ToString());
         }
 
@@ -432,13 +432,13 @@ namespace SignalGenerator
 
         private void radioButton_W2A1_5_Click(object sender, EventArgs e)
         {
-            Wave2Amplitude = 2000;
+            Wave2Amplitude = 1500;
             if (RunStop && RealTimeChange) send_string("Wave2Amplitude:" + Wave2Amplitude.ToString());
         }
 
         private void radioButton_W2A2_Click(object sender, EventArgs e)
         {
-            Wave2Amplitude = 5000;
+            Wave2Amplitude = 2000;
             if (RunStop && RealTimeChange) send_string("Wave2Amplitude:" + Wave2Amplitude.ToString());
         }
 
@@ -477,13 +477,15 @@ namespace SignalGenerator
 
         private void radioButtonPhase0_Click(object sender, EventArgs e)
         {
-            WavePhase = 0;
+            WavePhase = 360;
             if (RunStop && RealTimeChange) send_string("WavePhase:" + WavePhase.ToString());
         }
 
         private void radioButtonPhase180_Click(object sender, EventArgs e)
         {
-            WavePhase = 180;
+            
+
+            WavePhase = 180;            
             if (RunStop && RealTimeChange) send_string("WavePhase:" + WavePhase.ToString());
         }
     }
