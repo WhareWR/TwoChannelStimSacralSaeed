@@ -488,5 +488,31 @@ namespace SignalGenerator
             WavePhase = 180;            
             if (RunStop && RealTimeChange) send_string("WavePhase:" + WavePhase.ToString());
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void groupBox9_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //Starts the protocol by changing label to tell you when to start recording on the activeTwo
+            //Checks if this protocol has been called before
+            //If not
+            //"Set the Active two software to record for 6 seconds warning for 5 seconds, start recording in 3 2 1 
+            //Next it telss you that it isnt stimulating for 2 seconds, then it stimulates for 2 seconds and then stops stimulation for 2 seconds
+            //
+            //If it has then just do the recording no warning, only start recording in 3 2 1... 
+        }
     }
 }
