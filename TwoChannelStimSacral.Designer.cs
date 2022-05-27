@@ -42,8 +42,6 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
@@ -105,6 +103,7 @@
             this.btn_OpenPort = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.timerProtocol = new System.Windows.Forms.Timer(this.components);
+            this.label14 = new System.Windows.Forms.Label();
             this.tabPage2.SuspendLayout();
             this.groupBox13.SuspendLayout();
             this.groupBox12.SuspendLayout();
@@ -170,15 +169,13 @@
             this.groupBox13.Controls.Add(this.label17);
             this.groupBox13.Controls.Add(this.label16);
             this.groupBox13.Controls.Add(this.label15);
-            this.groupBox13.Controls.Add(this.button5);
-            this.groupBox13.Controls.Add(this.label14);
             this.groupBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox13.Location = new System.Drawing.Point(29, 484);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(654, 239);
+            this.groupBox13.Size = new System.Drawing.Size(654, 131);
             this.groupBox13.TabIndex = 1;
             this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "Custum Stimulation Protocol";
+            this.groupBox13.Text = "Settings";
             // 
             // textBox4
             // 
@@ -187,6 +184,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(115, 28);
             this.textBox4.TabIndex = 9;
+            this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             // 
             // textBox3
             // 
@@ -195,6 +193,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(115, 28);
             this.textBox3.TabIndex = 8;
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // textBox2
             // 
@@ -203,6 +202,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(115, 28);
             this.textBox2.TabIndex = 7;
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // label17
             // 
@@ -234,25 +234,6 @@
             this.label15.TabIndex = 4;
             this.label15.Text = "Pre Stim Duration";
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(19, 123);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(126, 61);
-            this.button5.TabIndex = 3;
-            this.button5.Text = "Start";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(168, 123);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(116, 32);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "label14";
-            this.label14.Visible = false;
-            // 
             // groupBox12
             // 
             this.groupBox12.Controls.Add(this.button4);
@@ -263,7 +244,8 @@
             this.groupBox12.Size = new System.Drawing.Size(654, 203);
             this.groupBox12.TabIndex = 1;
             this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "Stimulation Protocol 2";
+            this.groupBox12.Text = "Custum Stimulation Protocol";
+            this.groupBox12.Enter += new System.EventHandler(this.groupBox12_Enter);
             // 
             // button4
             // 
@@ -286,6 +268,7 @@
             // 
             // groupBox11
             // 
+            this.groupBox11.Controls.Add(this.label14);
             this.groupBox11.Controls.Add(this.button3);
             this.groupBox11.Controls.Add(this.label8);
             this.groupBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -322,7 +305,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(671, 770);
+            this.tabPage1.Size = new System.Drawing.Size(700, 770);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Stimulation Control";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1030,6 +1013,16 @@
             this.timerProtocol.Interval = 1000;
             this.timerProtocol.Tick += new System.EventHandler(this.timerProtocol_Tick);
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(168, 48);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(380, 128);
+            this.label14.TabIndex = 2;
+            this.label14.Text = "3 second start timer\r\n2 second pre stim duration\r\n2 second stim duration\r\n2second" +
+    " post stim duration";
+            // 
             // Form1
             // 
             this.AccessibleDescription = "Bipolar PaceMaker V1";
@@ -1087,8 +1080,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.GroupBox groupBox12;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label13;
@@ -1150,6 +1141,7 @@
         private System.Windows.Forms.Button btn_OpenPort;
         private System.Windows.Forms.Timer timerProtocol;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.Label label14;
     }
 }
 

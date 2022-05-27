@@ -184,51 +184,9 @@ namespace SignalGenerator
 
         private void process_answer(object sender, EventArgs e)
         {
-            string result = input_string;
-            if (input_string == "Connect")
-            {
-                label6.Text = "Connected";
-                //FlagFirstTime = false;
-                timer_HandShake.Enabled = false;
-                //FlagConnect = true;
-            }
-            
-            if (FlagResData)
-            {
-                string[] result_Prameters = result.Split(';');
-                //textBox15.Text = result_Prameters[0];
-                //textBox16.Text = result_Prameters[1];
-                //textBox17.Text = result_Prameters[2];
-                //if (int.Parse(result_Prameters[3]) == 1) LimitationAlarm = true; else LimitationAlarm = false;            
-                //if (LimitationAlarm) MessageBox.Show("  Tissue resistance is more than 3000 Ohm.\n\n Please restart GUI and Interface to continue.", "    Alarm!!!");
-                BatVolt = float.Parse(result_Prameters[0]);
-                int BatPercent = (int)(200 * (BatVolt - 3.3));
-                if (BatPercent > 100) BatPercent = 100;
-                if (BatPercent < 0) BatPercent = 0;
-                BatLevelBar.Value = BatPercent;
-                BatLevelBar.Tag = "10";
-                VltLbl.Text = (BatPercent.ToString() + " %");
 
-                FlagResData = false;
-
-                if (LoggingFlag==true)
-                {
-                    log = File.AppendText(path);
-                    //string str = textBox15.Text + ";" + textBox16.Text + ";" + textBox17.Text + ";" + ExpTimer + ";" + DateTime.Now;
-                    //log.WriteLine(str);
-                    log.WriteLine();
-                    log.Close();
-                }
- 
-            }
-
-            if (input_string == "SendingData")
-            {
-                FlagResData = true;
-            }
-            
         }
- 
+
         private void button_RunStop_Click(object sender, EventArgs e)
         {
             try
@@ -516,6 +474,7 @@ namespace SignalGenerator
             //
             //If it has then just do the recording no warning, only start recording in 3 2 1... 
             P1_Count = P1_Count + 1;
+            label14.Visible = false;
             if (P1_Count == 1)
             {
                 label8.Text = "Set the activeTwo software\n to run for 6 Seconds";
@@ -523,7 +482,6 @@ namespace SignalGenerator
                 button3.Text = "OK";
                 P1_Count = 1;
                 button4.Enabled = false;
-                button5.Enabled = false;
                 textBox2.Enabled = false;
                 textBox3.Enabled = false;
                 textBox4.Enabled = false;
@@ -536,7 +494,6 @@ namespace SignalGenerator
                 
                 button3.Enabled = false;
                 button4.Enabled = false;
-                button5.Enabled = false;
                 textBox2.Enabled = false;
                 textBox3.Enabled = false;
                 textBox4.Enabled = false;
@@ -594,15 +551,35 @@ namespace SignalGenerator
                     label8.Visible = false;
                     button3.Enabled = true;
                     button4.Enabled = true;
-                    button5.Enabled = true;
                     button3.Text = "Start";
                     textBox2.Enabled = true;
                     textBox3.Enabled = true;
                     textBox4.Enabled = true;
+                    label14.Visible = true;
                     break;
             }
         
 
+        }
+
+        private void groupBox12_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }
