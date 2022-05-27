@@ -36,6 +36,9 @@
             this.RunT = new System.Windows.Forms.Timer(this.components);
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -46,6 +49,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -55,11 +59,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.radioButtonPhase0 = new System.Windows.Forms.RadioButton();
-            this.radioButtonPhase180 = new System.Windows.Forms.RadioButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -68,6 +67,11 @@
             this.radioButton_W2A1 = new System.Windows.Forms.RadioButton();
             this.radioButton_W2A1_5 = new System.Windows.Forms.RadioButton();
             this.radioButton_W2A2 = new System.Windows.Forms.RadioButton();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.radioButtonPhase0 = new System.Windows.Forms.RadioButton();
+            this.radioButtonPhase180 = new System.Windows.Forms.RadioButton();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
             this.radioButton_W2F2000 = new System.Windows.Forms.RadioButton();
@@ -103,7 +107,7 @@
             this.btn_OpenPort = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.timerProtocol = new System.Windows.Forms.Timer(this.components);
-            this.label14 = new System.Windows.Forms.Label();
+            this.timerCustumProtocol = new System.Windows.Forms.Timer(this.components);
             this.tabPage2.SuspendLayout();
             this.groupBox13.SuspendLayout();
             this.groupBox12.SuspendLayout();
@@ -111,9 +115,9 @@
             this.tabPage1.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            this.groupBox8.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -163,6 +167,9 @@
             // 
             // groupBox13
             // 
+            this.groupBox13.Controls.Add(this.label20);
+            this.groupBox13.Controls.Add(this.label19);
+            this.groupBox13.Controls.Add(this.label18);
             this.groupBox13.Controls.Add(this.textBox4);
             this.groupBox13.Controls.Add(this.textBox3);
             this.groupBox13.Controls.Add(this.textBox2);
@@ -177,31 +184,64 @@
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Settings";
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(575, 70);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(63, 17);
+            this.label20.TabIndex = 12;
+            this.label20.Text = "Seconds";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(376, 70);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(63, 17);
+            this.label19.TabIndex = 11;
+            this.label19.Text = "Seconds";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(140, 70);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(63, 17);
+            this.label18.TabIndex = 10;
+            this.label18.Text = "Seconds";
+            // 
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(19, 66);
+            this.textBox4.Location = new System.Drawing.Point(19, 64);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(115, 28);
             this.textBox4.TabIndex = 9;
+            this.textBox4.Text = "2";
             this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             // 
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(255, 66);
+            this.textBox3.Location = new System.Drawing.Point(255, 64);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(115, 28);
             this.textBox3.TabIndex = 8;
+            this.textBox3.Text = "6";
             this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(454, 62);
+            this.textBox2.Location = new System.Drawing.Point(449, 64);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(115, 28);
             this.textBox2.TabIndex = 7;
+            this.textBox2.Text = "2";
             this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // label17
@@ -218,7 +258,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(250, 34);
+            this.label16.Location = new System.Drawing.Point(255, 34);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(142, 25);
             this.label16.TabIndex = 5;
@@ -228,7 +268,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(14, 34);
+            this.label15.Location = new System.Drawing.Point(19, 34);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(181, 25);
             this.label15.TabIndex = 4;
@@ -255,6 +295,7 @@
             this.button4.TabIndex = 2;
             this.button4.Text = "Start";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // label13
             // 
@@ -278,6 +319,16 @@
             this.groupBox11.TabIndex = 0;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Stimulation Protocol 1";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(168, 48);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(380, 128);
+            this.label14.TabIndex = 2;
+            this.label14.Text = "3 second start timer\r\n2 second pre stim duration\r\n2 second stim duration\r\n2second" +
+    " post stim duration";
             // 
             // button3
             // 
@@ -339,7 +390,7 @@
             this.groupBox9.Controls.Add(this.label3);
             this.groupBox9.Controls.Add(this.label1);
             this.groupBox9.Controls.Add(this.textBox1);
-            this.groupBox9.Location = new System.Drawing.Point(489, 62);
+            this.groupBox9.Location = new System.Drawing.Point(489, 25);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(132, 135);
             this.groupBox9.TabIndex = 64;
@@ -393,72 +444,6 @@
             this.textBox1.Text = "0";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.button2);
-            this.groupBox8.Controls.Add(this.label4);
-            this.groupBox8.Controls.Add(this.radioButtonPhase0);
-            this.groupBox8.Controls.Add(this.radioButtonPhase180);
-            this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox8.Location = new System.Drawing.Point(5, 164);
-            this.groupBox8.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox8.Size = new System.Drawing.Size(605, 73);
-            this.groupBox8.TabIndex = 62;
-            this.groupBox8.TabStop = false;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(163, 31);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(8, 7);
-            this.button2.TabIndex = 59;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label4.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label4.Location = new System.Drawing.Point(8, 30);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(119, 20);
-            this.label4.TabIndex = 58;
-            this.label4.Text = "Initial Phase:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // radioButtonPhase0
-            // 
-            this.radioButtonPhase0.AutoSize = true;
-            this.radioButtonPhase0.Checked = true;
-            this.radioButtonPhase0.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonPhase0.Location = new System.Drawing.Point(156, 31);
-            this.radioButtonPhase0.Margin = new System.Windows.Forms.Padding(4);
-            this.radioButtonPhase0.Name = "radioButtonPhase0";
-            this.radioButtonPhase0.Size = new System.Drawing.Size(39, 24);
-            this.radioButtonPhase0.TabIndex = 39;
-            this.radioButtonPhase0.TabStop = true;
-            this.radioButtonPhase0.Text = "0";
-            this.radioButtonPhase0.UseVisualStyleBackColor = true;
-            this.radioButtonPhase0.Click += new System.EventHandler(this.radioButtonPhase0_Click);
-            // 
-            // radioButtonPhase180
-            // 
-            this.radioButtonPhase180.AutoSize = true;
-            this.radioButtonPhase180.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonPhase180.Location = new System.Drawing.Point(265, 31);
-            this.radioButtonPhase180.Margin = new System.Windows.Forms.Padding(4);
-            this.radioButtonPhase180.Name = "radioButtonPhase180";
-            this.radioButtonPhase180.Size = new System.Drawing.Size(57, 24);
-            this.radioButtonPhase180.TabIndex = 35;
-            this.radioButtonPhase180.Text = "180";
-            this.radioButtonPhase180.UseVisualStyleBackColor = true;
-            this.radioButtonPhase180.Click += new System.EventHandler(this.radioButtonPhase180_Click);
-            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.groupBox6);
@@ -483,7 +468,7 @@
             this.groupBox6.Controls.Add(this.radioButton_W2A1_5);
             this.groupBox6.Controls.Add(this.radioButton_W2A2);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(8, 88);
+            this.groupBox6.Location = new System.Drawing.Point(12, 88);
             this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
@@ -570,6 +555,72 @@
             this.radioButton_W2A2.CheckedChanged += new System.EventHandler(this.radioButton_W2A2_Click);
             this.radioButton_W2A2.Click += new System.EventHandler(this.radioButton_W2A2_Click);
             // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.button2);
+            this.groupBox8.Controls.Add(this.label4);
+            this.groupBox8.Controls.Add(this.radioButtonPhase0);
+            this.groupBox8.Controls.Add(this.radioButtonPhase180);
+            this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox8.Location = new System.Drawing.Point(12, 164);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox8.Size = new System.Drawing.Size(619, 73);
+            this.groupBox8.TabIndex = 62;
+            this.groupBox8.TabStop = false;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(163, 31);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(8, 7);
+            this.button2.TabIndex = 59;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label4.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label4.Location = new System.Drawing.Point(8, 30);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(119, 20);
+            this.label4.TabIndex = 58;
+            this.label4.Text = "Initial Phase:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // radioButtonPhase0
+            // 
+            this.radioButtonPhase0.AutoSize = true;
+            this.radioButtonPhase0.Checked = true;
+            this.radioButtonPhase0.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonPhase0.Location = new System.Drawing.Point(156, 31);
+            this.radioButtonPhase0.Margin = new System.Windows.Forms.Padding(4);
+            this.radioButtonPhase0.Name = "radioButtonPhase0";
+            this.radioButtonPhase0.Size = new System.Drawing.Size(39, 24);
+            this.radioButtonPhase0.TabIndex = 39;
+            this.radioButtonPhase0.TabStop = true;
+            this.radioButtonPhase0.Text = "0";
+            this.radioButtonPhase0.UseVisualStyleBackColor = true;
+            this.radioButtonPhase0.Click += new System.EventHandler(this.radioButtonPhase0_Click);
+            // 
+            // radioButtonPhase180
+            // 
+            this.radioButtonPhase180.AutoSize = true;
+            this.radioButtonPhase180.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonPhase180.Location = new System.Drawing.Point(265, 31);
+            this.radioButtonPhase180.Margin = new System.Windows.Forms.Padding(4);
+            this.radioButtonPhase180.Name = "radioButtonPhase180";
+            this.radioButtonPhase180.Size = new System.Drawing.Size(57, 24);
+            this.radioButtonPhase180.TabIndex = 35;
+            this.radioButtonPhase180.Text = "180";
+            this.radioButtonPhase180.UseVisualStyleBackColor = true;
+            this.radioButtonPhase180.Click += new System.EventHandler(this.radioButtonPhase180_Click);
+            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.label12);
@@ -578,7 +629,7 @@
             this.groupBox7.Controls.Add(this.radioButton_W2F1000);
             this.groupBox7.Controls.Add(this.radioButton_W2F1020);
             this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox7.Location = new System.Drawing.Point(5, 21);
+            this.groupBox7.Location = new System.Drawing.Point(12, 21);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(4);
@@ -861,7 +912,7 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.BatLevelBar);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(211, 62);
+            this.groupBox2.Location = new System.Drawing.Point(211, 25);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
@@ -906,7 +957,7 @@
             this.checkBox_RealTimeChange.Checked = true;
             this.checkBox_RealTimeChange.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox_RealTimeChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_RealTimeChange.Location = new System.Drawing.Point(5, 618);
+            this.checkBox_RealTimeChange.Location = new System.Drawing.Point(5, 619);
             this.checkBox_RealTimeChange.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_RealTimeChange.Name = "checkBox_RealTimeChange";
             this.checkBox_RealTimeChange.Size = new System.Drawing.Size(169, 24);
@@ -1013,15 +1064,9 @@
             this.timerProtocol.Interval = 1000;
             this.timerProtocol.Tick += new System.EventHandler(this.timerProtocol_Tick);
             // 
-            // label14
+            // timerCustumProtocol
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(168, 48);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(380, 128);
-            this.label14.TabIndex = 2;
-            this.label14.Text = "3 second start timer\r\n2 second pre stim duration\r\n2 second stim duration\r\n2second" +
-    " post stim duration";
+            this.timerCustumProtocol.Tick += new System.EventHandler(this.timerCustumProtocol_Tick);
             // 
             // Form1
             // 
@@ -1047,11 +1092,11 @@
             this.groupBox10.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -1142,6 +1187,10 @@
         private System.Windows.Forms.Timer timerProtocol;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Timer timerCustumProtocol;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
     }
 }
 
