@@ -38,6 +38,8 @@ namespace SignalGenerator
         int WavePhase =360;
         int T = 0;
         int statePort = 0;
+        int P1_State = 0;
+        int P1_Count = 0;
 
         int[] DataSampling = new int[1024];
 
@@ -513,6 +515,94 @@ namespace SignalGenerator
             //Next it telss you that it isnt stimulating for 2 seconds, then it stimulates for 2 seconds and then stops stimulation for 2 seconds
             //
             //If it has then just do the recording no warning, only start recording in 3 2 1... 
+            P1_Count = P1_Count + 1;
+            if (P1_Count == 1)
+            {
+                label8.Text = "Set the activeTwo software\n to run for 6 Seconds";
+                label8.Visible = true;
+                button3.Text = "OK";
+                P1_Count = 1;
+                button4.Enabled = false;
+                button5.Enabled = false;
+                textBox2.Enabled = false;
+                textBox3.Enabled = false;
+                textBox4.Enabled = false;
+
+            }
+            else
+            {
+                timerProtocol.Interval = 20;
+                timerProtocol.Enabled = true;
+                
+                button3.Enabled = false;
+                button4.Enabled = false;
+                button5.Enabled = false;
+                textBox2.Enabled = false;
+                textBox3.Enabled = false;
+                textBox4.Enabled = false;
+
+
+            }
+
+        }
+
+        private void timerProtocol_Tick(object sender, EventArgs e)
+        {
+            //protocol 1 word 1
+            P1_State++;
+
+            switch (P1_State)
+            {
+                case 1:
+                    label8.Text = "Start Recording in 3";                
+                    label8.ForeColor = Color.Black;
+                    label8.Visible = true;
+                    timerProtocol.Interval = 1000;
+                    break;
+                case 2:
+                    label8.Text = "Start Recording in 2";
+                    timerProtocol.Interval = 1000;
+                    break;
+                case 3:
+                    label8.Text = "Start Recording in 1";
+                    timerProtocol.Interval = 1000;
+                    break;
+                case 4:
+                    label8.Text = "Pre Stimulation Recording";
+                    label8.ForeColor = Color.Green;
+                    timerProtocol.Interval = 2000;
+                    break;
+                case 5:
+                    label8.Text = "Stimulation Recording";
+                    label8.ForeColor = Color.Green;
+                    timerProtocol.Interval = 2000;
+                    send_string("RunStop:" + "1");
+                    break;
+                case 6:
+                    label8.Text = "Post Stimulation Recording";
+                    label8.ForeColor = Color.Green;
+                    timerProtocol.Interval = 2000;
+                    send_string("RunStop:" + "0");
+                    break;
+                case 7:
+                    label8.Text = "Recording Finished";
+                    timerProtocol.Interval = 2000;
+                    label8.ForeColor = Color.Red;
+                    timerProtocol.Enabled = false;
+                    P1_Count = 1;
+                    P1_State=0;
+                    label8.Visible = false;
+                    button3.Enabled = true;
+                    button4.Enabled = true;
+                    button5.Enabled = true;
+                    button3.Text = "Start";
+                    textBox2.Enabled = true;
+                    textBox3.Enabled = true;
+                    textBox4.Enabled = true;
+                    break;
+            }
+        
+
         }
     }
 }
