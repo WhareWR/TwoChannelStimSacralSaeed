@@ -46,7 +46,7 @@ namespace SignalGenerator
         int time_Stim = 0;
         int time_postStim = 0;
         string time_totalStim = "";
-
+        //int HandShakeCnt = 0;
 
         int[] DataSampling = new int[1024];
 
@@ -56,8 +56,8 @@ namespace SignalGenerator
         bool Modulation = false;
         bool ApplyingLimitation = true;
         bool FlagResData = false;
-        //bool FlagFirstTime = false;
-        //bool FlagConnect = false;
+        bool FlagFirstTime = false;
+        bool FlagConnect = false;
         bool LoggingFlag = false;
 
         string Status = null;
@@ -114,17 +114,25 @@ namespace SignalGenerator
 
         private void btn_OpenPort_Click(object sender, EventArgs e)
         {
-            // serialPort1.PortName = "COM15";
-            serialPort1.PortName = listBox1.SelectedItem.ToString();
-            serialPort1.Open();
 
-            if (serialPort1.IsOpen)
+            try
             {
-                //timer_find_ports.Enabled = false;
-                listBox1.BackColor = Color.GreenYellow;
-                set_baudrate(115200);
-                timer_HandShake.Enabled = true;
-                label6.Text = "Conecting . . .";
+                // serialPort1.PortName = "COM15";
+                serialPort1.PortName = listBox1.SelectedItem.ToString();
+                serialPort1.Open();
+
+                if (serialPort1.IsOpen)
+                {
+                    //timer_find_ports.Enabled = false;
+                    listBox1.BackColor = Color.GreenYellow;
+                    set_baudrate(115200);
+                    timer_HandShake.Enabled = true;
+                    label6.Text = "Conecting . . .";
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Port is allready oppened");
             }
 
         }
@@ -147,6 +155,7 @@ namespace SignalGenerator
         private void timer_HandShake_Tick(object sender, EventArgs e)
         {
             send_string("HandShake");
+            
             //HandShakeCnt++;
             //if (FlagConnect) HandShakeCnt = 0;
             //if (HandShakeCnt == 10)
@@ -161,7 +170,7 @@ namespace SignalGenerator
             //    FlagFirstTime = true;
             //    label6.Text = "Disconnected";
             //}
-         }
+        }
 
         void send_string(string input)
         {
@@ -191,7 +200,42 @@ namespace SignalGenerator
 
         private void process_answer(object sender, EventArgs e)
         {
+            string result = input_string;
+            if (input_string == "Connect")
+            {
+                label6.Text = "Connected";
+                //FlagFirstTime = false;
+                timer_HandShake.Enabled = false;
+                //FlagConnect = true;
+            }
 
+            if (FlagResData)
+            {
+                string[] result_Prameters = result.Split(';');
+                //textBox15.Text = result_Prameters[0];
+                //textBox16.Text = result_Prameters[1];
+                //textBox17.Text = result_Prameters[2];
+                //if (int.Parse(result_Prameters[3]) == 1) LimitationAlarm = true; else LimitationAlarm = false;            
+                //if (LimitationAlarm) MessageBox.Show("  Tissue resistance is more than 3000 Ohm.\n\n Please restart GUI and Interface to continue.", "    Alarm!!!");
+                BatVolt = float.Parse(result_Prameters[0]);
+                int BatPercent = (int)(200 * (BatVolt - 3.3));
+                if (BatPercent > 100) BatPercent = 100;
+                if (BatPercent < 0) BatPercent = 0;
+                BatLevelBar.Value = BatPercent;
+                BatLevelBar.Tag = "10";
+                VltLbl.Text = (BatPercent.ToString() + " %");
+
+                FlagResData = false;
+
+                if (LoggingFlag == true)
+                {
+                    log = File.AppendText(path);
+                    //string str = textBox15.Text + ";" + textBox16.Text + ";" + textBox17.Text + ";" + ExpTimer + ";" + DateTime.Now;
+                    //log.WriteLine(str);
+                    log.WriteLine();
+                    log.Close();
+                }
+            }
         }
 
         private void button_RunStop_Click(object sender, EventArgs e)
@@ -253,12 +297,12 @@ namespace SignalGenerator
                     }
                     else
                     {
+
                         send_string("RunStop:" + "0");
                         button_RunStop.BackColor = Color.Green;
                         button_RunStop.Text = "Run";
                         LoggingTimer.Enabled = false;
-                        RunT.Enabled = false;
-                        statePort = 0;
+                        //RunT.Enabled = false;
                         ExpTimer = 0;
                     }
                 }
@@ -295,10 +339,7 @@ namespace SignalGenerator
             {
                 Btn_Save.BackColor = Color.Green;
                 LoggingFlag = false;
-
             }
-                
-
         }
 
 
@@ -405,7 +446,7 @@ namespace SignalGenerator
 
         private void radioButton_W2A2_Click(object sender, EventArgs e)
         {
-            Wave2Amplitude = 2000;
+            Wave2Amplitude = 2500;
             if (RunStop && RealTimeChange) send_string("Wave2Amplitude:" + Wave2Amplitude.ToString());
         }
 
@@ -426,14 +467,13 @@ namespace SignalGenerator
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
+            send_string("RunStop:" + "0");
             button_RunStop.BackColor = Color.Green;
             button_RunStop.Text = "Run";
             LoggingTimer.Enabled = false;
             RunT.Enabled = false;
             statePort = 0;
             ExpTimer = 0;
-
         }
 
 
@@ -450,8 +490,6 @@ namespace SignalGenerator
 
         private void radioButtonPhase180_Click(object sender, EventArgs e)
         {
-            
-
             WavePhase = 180;            
             if (RunStop && RealTimeChange) send_string("WavePhase:" + WavePhase.ToString());
         }
@@ -492,20 +530,16 @@ namespace SignalGenerator
                 textBox2.Enabled = false;
                 textBox3.Enabled = false;
                 textBox4.Enabled = false;
-
             }
             else
             {
                 timerProtocol.Interval = 20;
                 timerProtocol.Enabled = true;
-                
                 button3.Enabled = false;
                 button4.Enabled = false;
                 textBox2.Enabled = false;
                 textBox3.Enabled = false;
                 textBox4.Enabled = false;
-
-
             }
 
         }
@@ -539,14 +573,24 @@ namespace SignalGenerator
                 case 5:
                     label8.Text = "Stimulation Recording";
                     label8.ForeColor = Color.Green;
-                    timerProtocol.Interval = 2000;
+                    send_string("Wave1Frequency:" + Wave1Frequency.ToString());
+                    System.Threading.Thread.Sleep(50);
+                    send_string("Wave1Amplitude:" + Wave1Amplitude.ToString());
+                    System.Threading.Thread.Sleep(50);
+                    send_string("Wave2Frequency:" + Wave2Frequency.ToString());
+                    System.Threading.Thread.Sleep(50);
+                    send_string("Wave2Amplitude:" + Wave2Amplitude.ToString());
+                    System.Threading.Thread.Sleep(50);
+                    send_string("WavePhase:" + WavePhase.ToString());
+                    System.Threading.Thread.Sleep(50);
                     send_string("RunStop:" + "1");
+                    timerProtocol.Interval = 2000;
                     break;
                 case 6:
                     label8.Text = "Post Stimulation Recording";
                     label8.ForeColor = Color.Green;
-                    timerProtocol.Interval = 2000;
                     send_string("RunStop:" + "0");
+                    timerProtocol.Interval = 2000;
                     break;
                 case 7:
                     label8.Text = "Recording Finished";
@@ -565,8 +609,6 @@ namespace SignalGenerator
                     label14.Visible = true;
                     break;
             }
-        
-
         }
 
         private void groupBox12_Enter(object sender, EventArgs e)
@@ -665,14 +707,26 @@ namespace SignalGenerator
                 case 5:
                     label13.Text = "Stimulation Recording";
                     label13.ForeColor = Color.Green;
-                    timerCustumProtocol.Interval = 1000 * time_Stim;
+                    send_string("Wave1Frequency:" + Wave1Frequency.ToString());
+                    System.Threading.Thread.Sleep(50);
+                    send_string("Wave1Amplitude:" + Wave1Amplitude.ToString());
+                    System.Threading.Thread.Sleep(50);
+                    send_string("Wave2Frequency:" + Wave2Frequency.ToString());
+                    System.Threading.Thread.Sleep(50);
+                    send_string("Wave2Amplitude:" + Wave2Amplitude.ToString());
+                    System.Threading.Thread.Sleep(50);
+                    send_string("WavePhase:" + WavePhase.ToString());
+                    System.Threading.Thread.Sleep(50);
                     send_string("RunStop:" + "1");
+                    timerCustumProtocol.Interval = 1000 * time_Stim;
+                    
                     break;
                 case 6:
                     label13.Text = "Post Stimulation Recording";
                     label13.ForeColor = Color.Green;
-                    timerCustumProtocol.Interval = 1000 * time_postStim;
                     send_string("RunStop:" + "0");
+                    timerCustumProtocol.Interval = 1000 * time_postStim;
+                    
                     break;
                 case 7:
                     label13.Text = "Recording Finished";
@@ -690,6 +744,30 @@ namespace SignalGenerator
                     textBox4.Enabled = true;
                     label14.Visible = true;
                     break;
+            }
+        }
+
+        private void radioButtonPhase180_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (serialPort1.IsOpen)
+            {
+                send_string("RunStop:" + "0");
+                serialPort1.Close();
             }
         }
     }

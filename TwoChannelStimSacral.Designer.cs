@@ -619,6 +619,7 @@
             this.radioButtonPhase180.TabIndex = 35;
             this.radioButtonPhase180.Text = "180";
             this.radioButtonPhase180.UseVisualStyleBackColor = true;
+            this.radioButtonPhase180.CheckedChanged += new System.EventHandler(this.radioButtonPhase180_CheckedChanged);
             this.radioButtonPhase180.Click += new System.EventHandler(this.radioButtonPhase180_Click);
             // 
             // groupBox7
@@ -1079,7 +1080,10 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "PaceMaker V1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Leave += new System.EventHandler(this.Form1_Leave);
             this.tabPage2.ResumeLayout(false);
             this.groupBox13.ResumeLayout(false);
             this.groupBox13.PerformLayout();
